@@ -1,29 +1,45 @@
 .app-container {
-
   margin: 0 auto;
   padding: 20px;
   text-align: center;
+}
+
+.background-image {
+  position: relative; /* Necesario para el pseudo-elemento ::before */
+  width: 100%;
+  height: 310px; /* Ajusta según el tamaño que necesites */
+  background-image: url('https://img.freepik.com/vector-gratis/sala-jardin-infantes-vacia-arco-iris-fondo-pantalla-cielo_1308-59475.jpg'); /* Cambia la URL por la de tu imagen */
+  background-size: cover; /* Para que cubra todo el contenedor */
+  background-position: center;
+  border-radius: 30px; /* Centrar la imagen */
+}
+
+.background-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.25); /* Capa semitransparente blanca con 25% de opacidad */
 }
 
 .header-container {
   padding-bottom: 2.5rem;
   margin:  auto;
   text-align: center;
-
   align-items: center;
   max-width: 48rem;
-  
-  
 }
 
 .main-header {
   font-size: 2.25rem;
-  font-weight: bold;
+  font-weight: bolder;
   color: #1a202c;
 }
 
 .main-header .highlight {
-  color: #2563eb;
+  color: purple;
 }
 
 @media (min-width: 640px) {
@@ -33,14 +49,16 @@
 }
 
 .description {
-
-  font-weight: 500;
+  margin: 0px 10px 0px 10px;
+  padding: 15px auto;
+  font-weight: bolder;
   font-size: 1.125rem;
   max-width: 65ch;
-  color: #1a202c;
+  color: rgb(6, 0, 6);
 }
 
 .form-container {
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
@@ -64,7 +82,7 @@
   max-width: 300px; /* Set a maximum width for the button */
   padding: 10px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: purple;
   color: white;
   border: none;
   border-radius: 4px;
@@ -72,7 +90,60 @@
 }
 
 .search-button:hover {
-  background-color: #0056b3;
+  background-color: #5e1e5d;
+}
+
+.translate-button {
+  width: 100%; /* Make the button full width */
+  max-width: 200px; /* Set a maximum width for the button */
+  padding: 10px;
+  margin: 20px;
+  font-size: 16px;
+  background-color: purple;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.translate-button:hover {
+  background-color: #5e1e5d;
+}
+
+.logout-button {
+  width: 100%; /* Mantiene el ancho del botón completo */
+  max-width: 300px; /* Establece un ancho máximo */
+  padding: 20px;
+  margin: 20px; /* Márgenes alrededor del botón */
+  float: right;
+  font-size: 16px;
+  background-color: purple;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #5e1e5d;
+}
+
+
+.reader-button {
+  width: 100%; /* Make the button full width */
+  max-width: 200px; /* Set a maximum width for the button */
+  padding: 10px;
+  margin: 20px;
+  font-size: 16px;
+  background-color: purple;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.reader-button:hover {
+  background-color: #5e1e5d;
 }
 
 .result-container {
