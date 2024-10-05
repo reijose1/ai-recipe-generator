@@ -7,6 +7,8 @@ import { generateClient } from "aws-amplify/data";
 import outputs from "../amplify_outputs.json";
 
 import "@aws-amplify/ui-react/styles.css";
+import Speech from "./Speech";
+import Translate from "./Translate";
 
 Amplify.configure(outputs);
 
@@ -28,7 +30,6 @@ function App({ signOut, user }: AppProps) {
   // Cambiar la declaración de textToTranslate para ser parte del estado
   const [result, setResult] = useState<string>("");
   const [loading, setLoading] = useState(false);
-  const [textToTranslate, setTextToTranslate] = useState<string | null>(null); // Nuevo estado para textToTranslate
 
   // Función que maneja el envío del formulario
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -45,7 +46,6 @@ function App({ signOut, user }: AppProps) {
       if (!errors) {
         const generatedResult = data?.body || "No data returned";
         setResult(generatedResult);
-        setTextToTranslate(generatedResult); // Guardar el texto generado en textToTranslate
       } else {
         console.log(errors);
       }
@@ -57,13 +57,7 @@ function App({ signOut, user }: AppProps) {
   };
 
   // Nueva función para gestionar la traducción
-  const handleTranslate = () => {
-    if (!textToTranslate) {
-      return <p>It is necessary to generate a text first to perform this task.</p>; // Mensaje condicional
-    }
-    // Aquí se coloca la lógica de traducción con Amazon Translate
-    return <p>Translating: {textToTranslate}</p>;
-  };
+
 
   return (
     <div className="">
@@ -122,13 +116,8 @@ function App({ signOut, user }: AppProps) {
           )}
 
           <br />
-          {/* Botón para traducir el texto generado */}
-          <button type="button" className="translate-button" onClick={handleTranslate}>
-            Translate
-          </button>
-          <button type="submit" className="reader-button">
-            Read
-          </button>
+          <Translate />
+          <Speech />
         </div>
       </div>
     </div>

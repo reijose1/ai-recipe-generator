@@ -113,7 +113,7 @@
 .logout-button {
   width: 100%; /* Mantiene el ancho del botón completo */
   max-width: 300px; /* Establece un ancho máximo */
-  padding: 20px;
+  padding: 5px;
   margin: 20px; /* Márgenes alrededor del botón */
   float: right;
   font-size: 16px;

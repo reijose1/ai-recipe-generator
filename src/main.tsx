@@ -5,12 +5,13 @@ import "@aws-amplify/ui-react/styles.css"; // Import Amplify UI styles
 import App from "./App";
 import "./index.css";
 
+
 function Root() {
   return (
     <Authenticator>
-      {({ signOut, user }) => (
+      {({ signOut }) => (
         <main>
-          <App signOut={signOut} user={user} />
+          <App signOut={signOut}  />
         </main>
       )}
     </Authenticator>

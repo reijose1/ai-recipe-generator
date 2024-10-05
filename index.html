@@ -1,13 +1,104 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/icons8-amazon-web-services-16.png" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/icons8-amazon-web-services-16.png"
+    />
+    <!-- Font Awesome CDN -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Amazing World Stories</title>
   </head>
   <body>
+    <header className="header">
+      <div
+        className="container mx-auto px-4 py-3 flex items-center justify-between"
+      >
+        <div className="flex items-center space-x-4">
+          <img
+            src="src/assets/restartimg.png"
+            alt="AWS re/start Logo"
+            className="restart h-10 w-auto"
+          />
+          <img
+            src="src/assets/morris.png"
+            alt="Morris & Opazo Logo"
+            className="morris h-10 w-auto"
+          />
+        </div>
+        <h1 className="text-2xl font-bold text-whitesmoke">EdukAI</h1>
+      </div>
+    </header>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <footer class="footer bg-dark-purple text-light py-5">
+      <div class="container">
+        <div class="row">
+          <!-- Sección de Derechos Reservados -->
+          <div class="row mt-4">
+            <div class="col-md-8 text-center">
+              <h3 class="text-uppercase font-weight-bold">
+                Reinaldo José Carrillo Roldán
+              </h3>
+              <p>Estudiante programa AWS re/Start con Morris & Opazzo.</p>
+              <p class="small">
+                <strong>&copy; 2024 Todos los derechos reservados.</strong>
+                <br />
+                El uso de los logos de AWS re/Start y Morris & Opazzo es solo
+                para fines educativos y sin ningún propósito comercial.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Sección de Información Personal -->
+        <div class="col-md-6 mb-4">
+          <h4 class="text-uppercase font-weight-bold">Conéctate conmigo</h4>
+          <ul class="list-unstyled">
+            <li>
+              <i class="fas fa-phone"></i>
+              <a href="tel:+1234567890" class="text-light">+57 310 343 5263</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:reijose1@gmail.com" class="text-light"
+                >reijose1@gmail.com</a
+              >
+            </li>
+            <li>
+              <i class="fas fa-globe"></i>
+              <a
+                href="https://desarrollosreicar.com"
+                class="text-light"
+                target="_blank"
+                >https://desarrollosreicar.com</a
+              >
+            </li>
+          </ul>
+
+          <!-- Sección de Iconos Sociales -->
+          <div class="col-md-6 mb-4 text-center">
+            <a
+              href="https://www.linkedin.com/in/reinaldocarrillo/"
+              target="_blank"
+            >
+              <i class="fab fa-linkedin fa-2x"></i>
+              <!-- 'fab' es para iconos de marca -->
+            </a>
+            <a href="https://www.github.com/reijose1" target="_blank">
+              <i class="fab fa-github fa-2x"></i>
+              <!-- 'fab' es para iconos de marca -->
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

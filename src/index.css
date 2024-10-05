@@ -1,3 +1,5 @@
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -13,7 +15,121 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+}
 
+/* Estilos generales del header */
+header {
+  margin: -10px;
+  margin-top: -40px;
+  background-color: whitesmoke;
+  border: purple solid 6px;
+  border-radius: 5px;
+  margin-bottom: 60px;
+  padding: 10px;
+}
+
+.header {
+  width: 100%;
+  background-color: #1c1c1e; /* Fondo oscuro */
+  padding: 1rem 0;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Estilo para el título EdukAI alineado a la izquierda */
+h1 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: purple;
+  margin: 0;
+  text-align: right;
+}
+
+/* Estilos para las imágenes */
+img {
+  height: 40px;
+  width: auto;
+  display: inline;
+  justify-content: center;
+  align-items: center; /* Mantiene la proporción original de las imágenes */
+}
+
+/* Para hacerlo responsivo */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .flex {
+    margin-top: 0.75rem;
+    justify-content: center;
+    width: 100%;
+    text-align: right;
+  }
+}
+
+@media (min-width: 769px) {
+  .flex {
+    justify-content: center; /* Las imágenes estarán centradas en pantallas grandes */
+  }
+
+  .container {
+    justify-content: space-between;
+  }
+}
+
+footer {
+  margin: 0 auto;
+  background-color: whitesmoke;
+  border: purple solid 6px;
+  border-radius: 5px;
+  margin-top: 60px;
+  margin-bottom: -40px;
+  padding: 10px;
+  color: black;
+}
+
+.footer a {
+  color: black;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #ff99cc; /* Un tono más claro al hacer hover */
+}
+
+/* Iconos */
+.fab {
+  margin: 10px;
+  color: purple;
+  transition: color 0.3s;
+  text-align: right;
+  margin-left: 4rem;
+  margin-right: 0.5rem;
+}
+
+.fab:hover {
+  color: #ff99cc; /* Efecto hover en los iconos sociales */
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+/* Ajuste en pantallas pequeñas */
+@media (max-width: 768px) {
+  .footer .row {
+    text-align: center;
+  }
 }
 
 .card {
