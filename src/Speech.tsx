@@ -21,17 +21,20 @@ const Speech = () => {
         setIsLoading(true);
         try {
             const client = new PollyClient({
-                region: process.env.REACT_APP_AWS_REGION,
+                //region: process.env.REACT_APP_AWS_REGION,
+                region: "us-east-1",
                 credentials: fromCognitoIdentityPool({
-                    clientConfig: { region: process.env.REACT_APP_AWS_REGION },
-                    identityPoolId: process.env.REACT_APP_IDENTITY_POOL_ID!
+                    clientConfig: { region: "us-east-1" },
+                    //clientConfig: { region: process.env.REACT_APP_AWS_REGION },
+                    identityPoolId: "us-east-1:4120a930-72b9-44d5-85f9-1c055e26ff8e"!
+                    //identityPoolId: process.env.REACT_APP_IDENTITY_POOL_ID!
                 })
             });
 
             const command = new SynthesizeSpeechCommand({
                 Text: text,
                 OutputFormat: "mp3",
-                VoiceId: "Ruth"
+                VoiceId: "Salli"
             });
 
             const { AudioStream } = await client.send(command);

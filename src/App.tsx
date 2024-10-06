@@ -116,8 +116,8 @@ function App({ signOut, user }: AppProps) {
           )}
 
           <br />
-          <Translate />
           <Speech />
+          <Translate />
         </div>
       </div>
     </div>
