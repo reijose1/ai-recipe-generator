@@ -1,7 +1,7 @@
 const Speech = () => {
     
     return (
-        <div>
+        <div className="reader-container">
             <textarea className="reader-textarea"></textarea>
             <button type="submit" className="reader-button">Speech</button>
         </div>
