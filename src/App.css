@@ -112,6 +112,11 @@
 
 .translated-response {
   color: black;
+  text-align: justify;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 10px;
+  padding: 15px;
 }
 
 .logout-button {
