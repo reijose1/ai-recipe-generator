@@ -1,35 +1,89 @@
 import { useState } from "react";
-//import { Loader, Placeholder, Button } from "@aws-amplify/ui-react";
-//import { Amplify } from "aws-amplify";
-//import { Schema } from "../amplify/data/resource";
-//import { generateClient } from "aws-amplify/data";
-//import outputs from "../amplify_outputs.json";
+import { TranslateClient, TranslateTextCommand } from "@aws-sdk/client-translate";
 
-import "@aws-amplify/ui-react/styles.css";
+const translateClient = new TranslateClient({
+  region: "us-east-1",
+  credentials: {
+    accessKeyId: process.env.VITE_AWS_ACCESS_KEY_ID || '',
+    secretAccessKey: process.env.VITE_AWS_SECRET_ACCESS_KEY || '',
+  },
+});
 
-// Nuevo estado para textToTranslate
+const TranslateComponent = () => {
+  const [text, setText] = useState("");
+  const [translatedText, setTranslatedText] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-const Translate = () => {
-  const [textToTranslate] = useState<string | null>(null);
-
-  const handleTranslate = () => {
-    if (!textToTranslate) {
-      return (
-        <p>It is necessary to generate a text first to perform this task.</p>
-      ); // Mensaje condicional
+  const translateText = async () => {
+    if (!text.trim()) {
+      alert("Please enter some text to translate");
+      return;
     }
-    // Aquí se coloca la lógica de traducción con Amazon Translate
+  
+    if (text.length > 5000) {
+      alert("Text exceeds the 5000 character limit");
+      return;
+    }
+    
+    setLoading(true);
+    setErrorMessage(""); // Reinicia el mensaje de error
 
-    return <p>{textToTranslate}</p>;
+    try {
+      console.log("Access Key:", process.env.VITE_AWS_ACCESS_KEY_ID); // Verifica la clave de acceso
+      const params = {
+        Text: text,
+        SourceLanguageCode: "en",
+        TargetLanguageCode: "es",
+      };
+
+      console.log("Sending translation request with params:", params);
+
+      const command = new TranslateTextCommand(params);
+      const response = await translateClient.send(command);
+
+      console.log("Response from Translate API:", response);
+
+      // Verifica si la respuesta es válida y establece el texto traducido
+      if (response && response.TranslatedText) {
+        console.log("Translated Text:", response.TranslatedText); // Log para verificar el texto traducido
+        setTranslatedText(response.TranslatedText || "");
+      } else {
+        setErrorMessage("Translation failed, but no error message provided.");
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error("Translation error:", error.message);
+        setErrorMessage(`Translation error: ${error.message}`);
+      } else {
+        console.error("An unknown error occurred:", error);
+        setErrorMessage("An unknown error occurred during translation.");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div>
-      <button type="submit" className="reader-button" onClick={handleTranslate}>
-        Translate
+      <h1>Translate Area</h1>
+      <textarea
+        placeholder="Enter text to translate"
+        className="reader-textarea"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <button
+        onClick={translateText}
+        disabled={loading}
+        className="translate-button"
+      >
+        {loading ? "Translating..." : "Translate"}
       </button>
+      {translatedText && <p className="translated-respuesta"> {translatedText}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Muestra errores */}
     </div>
   );
 };
 
-export default Translate;
+export default TranslateComponent;

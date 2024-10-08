@@ -110,6 +110,10 @@
   background-color: #5e1e5d;
 }
 
+.translated-respuesta {
+  color: black;
+}
+
 .logout-button {
   width: 100%; /* Mantiene el ancho del botón completo */
   max-width: 300px; /* Establece un ancho máximo */
