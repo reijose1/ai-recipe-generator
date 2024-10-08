@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { TranslateClient, TranslateTextCommand } from "@aws-sdk/client-translate";
+import { fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
 
+// Inicializa el cliente de traducción
 const translateClient = new TranslateClient({
   region: "us-east-1",
-  credentials: {
-    accessKeyId: process.env.VITE_AWS_ACCESS_KEY_ID || '',
-    secretAccessKey: process.env.VITE_AWS_SECRET_ACCESS_KEY || '',
-  },
+  credentials: fromCognitoIdentityPool({
+    clientConfig: { region: "us-east-1" },
+    identityPoolId: "us-east-1:4120a930-72b9-44d5-85f9-1c055e26ff8e", // Cambia esto a una variable de entorno si es necesario
+  }),
 });
 
 const TranslateComponent = () => {
@@ -16,21 +18,21 @@ const TranslateComponent = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const translateText = async () => {
+    // Validar texto ingresado
     if (!text.trim()) {
       alert("Please enter some text to translate");
       return;
     }
-  
+
     if (text.length > 5000) {
       alert("Text exceeds the 5000 character limit");
       return;
     }
-    
+
     setLoading(true);
     setErrorMessage(""); // Reinicia el mensaje de error
 
     try {
-      console.log("Access Key:", process.env.VITE_AWS_ACCESS_KEY_ID); // Verifica la clave de acceso
       const params = {
         Text: text,
         SourceLanguageCode: "en",
@@ -47,18 +49,15 @@ const TranslateComponent = () => {
       // Verifica si la respuesta es válida y establece el texto traducido
       if (response && response.TranslatedText) {
         console.log("Translated Text:", response.TranslatedText); // Log para verificar el texto traducido
-        setTranslatedText(response.TranslatedText || "");
+        setTranslatedText(response.TranslatedText);
       } else {
         setErrorMessage("Translation failed, but no error message provided.");
       }
     } catch (error) {
-      if (error instanceof Error) {
-        console.error("Translation error:", error.message);
-        setErrorMessage(`Translation error: ${error.message}`);
-      } else {
-        console.error("An unknown error occurred:", error);
-        setErrorMessage("An unknown error occurred during translation.");
-      }
+      // Manejo de errores
+      const errorMsg = error instanceof Error ? error.message : "An unknown error occurred during translation.";
+      console.error("Translation error:", errorMsg);
+      setErrorMessage(`Translation error: ${errorMsg}`);
     } finally {
       setLoading(false);
     }
@@ -80,10 +79,11 @@ const TranslateComponent = () => {
       >
         {loading ? "Translating..." : "Translate"}
       </button>
-      {translatedText && <p className="translated-respuesta"> {translatedText}</p>}
+      {translatedText && <p className="translated-response">{translatedText}</p>}
       {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Muestra errores */}
     </div>
   );
 };
 
 export default TranslateComponent;
+
