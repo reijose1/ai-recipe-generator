@@ -26,7 +26,7 @@ const Speech = () => {
                 credentials: fromCognitoIdentityPool({
                     clientConfig: { region: "us-east-1" },
                     //clientConfig: { region: process.env.REACT_APP_AWS_REGION },
-                    identityPoolId: "us-east-1:4120a930-72b9-44d5-85f9-1c055e26ff8e"!
+                    identityPoolId: "us-east-1:e1ab352d-58ff-4c28-b0a9-d73fc0a3a625"!
                     //identityPoolId: process.env.REACT_APP_IDENTITY_POOL_ID!
                 })
             });

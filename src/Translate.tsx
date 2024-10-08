@@ -7,7 +7,7 @@ const translateClient = new TranslateClient({
   region: "us-east-1",
   credentials: fromCognitoIdentityPool({
     clientConfig: { region: "us-east-1" },
-    identityPoolId: "us-east-1:4120a930-72b9-44d5-85f9-1c055e26ff8e", // Cambia esto a una variable de entorno si es necesario
+    identityPoolId: "us-east-1:e1ab352d-58ff-4c28-b0a9-d73fc0a3a625", // Cambia esto a una variable de entorno si es necesario
   }),
 });
 
